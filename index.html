@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      color:#1a1a1a;
+      overflow-x:hidden;
+    }
+
+    header{
+      width:100%;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.85);
+      backdrop-filter:blur(10px);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 8%;
+    }
+
+    .logo{
+      color:#fff;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:#00bfff;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:30px;
+    }
+
+    nav ul li a{
+      color:#fff;
+      text-decoration:none;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#00bfff;
+    }
+
+    .hero{
+      height:100vh;
+      background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      padding:0 20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      margin-bottom:20px;
+      animation:fadeIn 1.5s ease;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      max-width:800px;
+      margin:auto;
+      margin-bottom:35px;
+      line-height:1.7;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      background:#00bfff;
+      color:#fff;
+      text-decoration:none;
+      border-radius:50px;
+      transition:0.4s;
+      font-weight:600;
+    }
+
+    .btn:hover{
+      background:#008ecc;
+      transform:translateY(-4px);
+    }
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      color:#002244;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#666;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .about-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+      align-items:center;
+    }
+
+    .about-img img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .about-content h3{
+      font-size:32px;
+      color:#002244;
+      margin-bottom:20px;
+    }
+
+    .about-content p{
+      color:#555;
+      line-height:1.9;
+      margin-bottom:20px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#fff;
+      padding:35px 25px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      transition:0.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card i{
+      font-size:45px;
+      color:#00bfff;
+      margin-bottom:20px;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      color:#002244;
+    }
+
+    .card p{
+      color:#666;
+      line-height:1.7;
+    }
+
+    .stats{
+      background:#002244;
+      color:#fff;
+    }
+
+    .stats-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:30px;
+      text-align:center;
+    }
+
+    .stat-box h2{
+      font-size:48px;
+      color:#00bfff;
+      margin-bottom:10px;
+    }
+
+    .contact-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+    }
+
+    .contact-info{
+      background:#fff;
+      padding:40px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .contact-info h3{
+      margin-bottom:20px;
+      color:#002244;
+    }
+
+    .contact-info p{
+      margin-bottom:15px;
+      color:#555;
+    }
+
+    form{
+      background:#fff;
+      padding:40px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    form input,
+    form textarea{
+      width:100%;
+      padding:15px;
+      margin-bottom:20px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      outline:none;
+    }
+
+    form button{
+      border:none;
+      cursor:pointer;
+    }
+
+    footer{
+      background:#000;
+      color:#fff;
+      text-align:center;
+      padding:30px 20px;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+      nav ul li a{
+        font-size:13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">ANDREW <span>LOGISTICS</span></div>
+
+    <ul>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#products">PRODUCTS</a></li>
+      <li><a href="#services">SERVICES</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Premium Logistics & Supply Chain Solutions</h1>
+    <p>
+      Andrew Logistics delivers world-class transportation, warehousing, packaging, inventory management, and supply chain solutions with unmatched reliability and operational excellence.
+    </p>
+
+    <a href="#contact" class="btn">Get In Touch</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-title">
+    <h2>About Us</h2>
+    <p>
+      Trusted logistics partner delivering efficient and innovative transportation solutions for modern businesses.
+    </p>
+  </div>
+
+  <div class="about-container">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=1200&auto=format&fit=crop" alt="Warehouse">
+    </div>
+
+    <div class="about-content">
+      <h3>Andrew Logistics</h3>
+
+      <p>
+        Founded by Andrew Dsouza, Andrew Logistics is committed to delivering high-quality logistics and supply chain management services across industries. We combine operational efficiency, advanced logistics systems, and customer-focused solutions.
+      </p>
+
+      <p>
+        From transportation and inventory handling to packaging and warehousing, we ensure every shipment is managed with precision, speed, and reliability.
+      </p>
+
+      <a href="#services" class="btn">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="section-title">
+    <h2>Our Solutions</h2>
+    <p>
+      End-to-end logistics solutions tailored to modern business requirements.
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <i class="fa-solid fa-truck"></i>
+      <h3>Transportation</h3>
+      <p>
+        Fast, secure, and dependable transportation services across multiple regions.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-warehouse"></i>
+      <h3>Warehousing</h3>
+      <p>
+        Advanced warehousing facilities designed for efficient storage and handling.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-box"></i>
+      <h3>Packaging</h3>
+      <p>
+        Safe and premium packaging services to protect goods during transit.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>Inventory Management</h3>
+      <p>
+        Smart inventory tracking and optimization solutions for businesses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-container">
+    <div class="stat-box">
+      <h2>500+</h2>
+      <p>Successful Deliveries</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>100+</h2>
+      <p>Business Clients</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>24/7</h2>
+      <p>Customer Support</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>99%</h2>
+      <p>On-Time Delivery</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-title">
+    <h2>Services</h2>
+    <p>
+      Delivering integrated logistics and supply chain solutions with efficiency and professionalism.
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <i class="fa-solid fa-shipping-fast"></i>
+      <h3>Delivery Services</h3>
+      <p>
+        Reliable and timely deliveries ensuring smooth operations for businesses.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-network-wired"></i>
+      <h3>Supply Chain Management</h3>
+      <p>
+        Complete supply chain planning and operational management services.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-headset"></i>
+      <h3>Customer Support</h3>
+      <p>
+        Dedicated support team ensuring seamless communication and service quality.
+      </p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-globe"></i>
+      <h3>Global Reach</h3>
+      <p>
+        Logistics solutions designed for expanding business operations worldwide.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-title">
+    <h2>Contact Us</h2>
+    <p>
+      Reach out to our team for logistics and transportation solutions.
+    </p>
+  </div>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Company Information</h3>
+
+      <p><strong>Founder:</strong> Andrew Dsouza</p>
+      <p><strong>Phone:</strong> +91 8876544567</p>
+      <p><strong>Email:</strong> andrewlogistics@gmail.com</p>
+      <p><strong>Address:</strong> Floor No. 01, Mulund West, Pant Nagar</p>
+    </div>
+
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+
+      <button class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Andrew Logistics. All Rights Reserved.</p>
+</footer>
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/918876544567" class="whatsapp-btn" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Image Slider -->
+<section class="slider-section">
+  <div class="section-title">
+    <h2>Our Logistics Network</h2>
+    <p>Professional transportation and warehousing infrastructure.</p>
+  </div>
+
+  <div class="slider">
+    <div class="slides">
+      <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1400&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1400&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=1400&auto=format&fit=crop">
+    </div>
+  </div>
+</section>
+
+<!-- Admin Panel -->
+<section id="admin">
+  <div class="section-title">
+    <h2>Admin Dashboard</h2>
+    <p>Quick company statistics and management overview.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <i class="fa-solid fa-users"></i>
+      <h3>Clients</h3>
+      <p>120 Active Business Clients</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-truck-fast"></i>
+      <h3>Deliveries</h3>
+      <p>500+ Monthly Deliveries</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-boxes-stacked"></i>
+      <h3>Warehousing</h3>
+      <p>24/7 Warehouse Operations</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.whatsapp-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:65px;
+  height:65px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:35px;
+  z-index:9999;
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+.slider-section{
+  padding:100px 8%;
+  background:#eef5fb;
+}
+
+.slider{
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.slides{
+  display:flex;
+  width:300%;
+  animation:slide 15s infinite;
+}
+
+.slides img{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+}
+
+@keyframes slide{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(0);}
+  35%{transform:translateX(-100%);}
+  60%{transform:translateX(-100%);}
+  70%{transform:translateX(-200%);}
+  95%{transform:translateX(-200%);}
+  100%{transform:translateX(0);}
+}
+
+.card{
+  animation:floatUp 1.5s ease;
+}
+
+@keyframes floatUp{
+  from{
+    opacity:0;
+    transform:translateY(50px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+</style>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Thank you! Your message has been submitted successfully.');
+});
+</script>
+
+
+<!-- Video Background Section -->
+<section class="video-section">
+  <video autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-trucks-on-the-road-1560918677098?download=1080p" type="video/mp4">
+  </video>
+
+  <div class="video-overlay">
+    <h2>Driven By Speed & Reliability</h2>
+    <p>Advanced logistics infrastructure with modern transportation systems.</p>
+  </div>
+</section>
+
+<!-- Shipment Tracker -->
+<section id="tracker">
+  <div class="section-title">
+    <h2>Live Shipment Tracker</h2>
+    <p>Track your shipment status instantly.</p>
+  </div>
+
+  <div class="tracker-box">
+    <input type="text" id="trackingInput" placeholder="Enter Tracking ID">
+    <button onclick="trackShipment()" class="btn">Track Shipment</button>
+
+    <div id="trackingResult"></div>
+  </div>
+</section>
+
+<!-- Animated Counters -->
+<section class="counter-section">
+  <div class="counter-box">
+    <h2 class="counter" data-target="1500">0</h2>
+    <p>Completed Shipments</p>
+  </div>
+
+  <div class="counter-box">
+    <h2 class="counter" data-target="250">0</h2>
+    <p>Business Partners</p>
+  </div>
+
+  <div class="counter-box">
+    <h2 class="counter" data-target="50">0</h2>
+    <p>Fleet Vehicles</p>
+  </div>
+
+  <div class="counter-box">
+    <h2 class="counter" data-target="24">0</h2>
+    <p>Support Hours</p>
+  </div>
+</section>
+
+<!-- Google Maps -->
+<section id="map-section">
+  <div class="section-title">
+    <h2>Our Location</h2>
+    <p>Visit Andrew Logistics office.</p>
+  </div>
+
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps?q=Mulund%20West%20Mumbai&output=embed"
+      width="100%"
+      height="450"
+      style="border:0; border-radius:20px;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<style>
+.video-section{
+  position:relative;
+  height:80vh;
+  overflow:hidden;
+}
+
+.video-section video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.video-overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+  padding:20px;
+}
+
+.video-overlay h2{
+  font-size:55px;
+  margin-bottom:20px;
+}
+
+.video-overlay p{
+  font-size:20px;
+  max-width:700px;
+}
+
+.tracker-box{
+  max-width:700px;
+  margin:auto;
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.tracker-box input{
+  width:100%;
+  padding:15px;
+  margin-bottom:20px;
+  border:1px solid #ccc;
+  border-radius:10px;
+}
+
+#trackingResult{
+  margin-top:25px;
+  font-weight:600;
+  color:#002244;
+}
+
+.counter-section{
+  background:#002244;
+  padding:100px 8%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+  text-align:center;
+}
+
+.counter-box{
+  background:#fff;
+  padding:40px 20px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.counter-box h2{
+  font-size:55px;
+  color:#00bfff;
+  margin-bottom:10px;
+}
+
+.counter-box p{
+  color:#555;
+  font-weight:600;
+}
+
+.map-container{
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  border-radius:20px;
+  overflow:hidden;
+}
+</style>
+
+<script>
+function trackShipment(){
+  const input = document.getElementById('trackingInput').value;
+  const result = document.getElementById('trackingResult');
+
+  if(input === ''){
+    result.innerHTML = 'Please enter tracking ID';
+  }
+  else{
+    result.innerHTML = 'Shipment Status: In Transit - Expected Delivery Within 24 Hours';
+  }
+}
+
+const counters = document.querySelectorAll('.counter');
+
+counters.forEach(counter => {
+  counter.innerText = '0';
+
+  const updateCounter = () => {
+    const target = +counter.getAttribute('data-target');
+    const c = +counter.innerText;
+
+    const increment = target / 100;
+
+    if(c < target){
+      counter.innerText = `${Math.ceil(c + increment)}`;
+      setTimeout(updateCounter, 20);
+    }
+    else{
+      counter.innerText = target;
+    }
+  };
+
+  updateCounter();
+});
+</script>
+
+</body>
+</html>
